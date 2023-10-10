@@ -30,8 +30,8 @@ public:
         binaryHeap.deleteMax(maxPriority);
 
         //get the item with the max priority and remove it
-        Item item = map[maxPriority].back();
-        map[maxPriority].pop_back();
+        Item item = map[maxPriority].front();
+        map[maxPriority].erase(map[maxPriority].begin());
 
         if (map[maxPriority].empty()) {
             map.erase(maxPriority);

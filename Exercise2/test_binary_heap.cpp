@@ -37,7 +37,7 @@ int main() {
 	pq.insert("low2", 1);
     pq.insert("high2", 3);
 
-	//Should dequeue the items with the highest priority first
+	//Should dequeue the items with the highest priority first. Items that has the same priority should be dequeued in the order they were inserted.
     std::cout << "Dequeued: " << pq.dequeue() << endl; 
     std::cout << "Dequeued: " << pq.dequeue() << endl;
 	std::cout << "Dequeued: " << pq.dequeue() << endl; 
