@@ -8,23 +8,25 @@
  * n is the logical size of the binary heap.
  */
 template <typename Comparable>
-void minHeapify(vector<Comparable> &array, int node, int n) {
-	int child;
-	Comparable tmp = std::move(array[node]);
-	// his condition ensures that the loop continues as long as the left child of the current node is within the bounds of the heap.
-	// The left child index is calculated as (node * 2 + 1), which represents the position of the left child in a binary heap.
-	// This part is O(log N) because, in the worst case, the loop will run for each level of the binary heap, 
-	// and the height of a binary heap is logarithmic with respect to the number of elements (N).
-	for (; node * 2 + 1 < n; node = child) {
-		child = node * 2 + 1;
-		if (child != n - 1 && array[child + 1] < array[child])
-			++child;
-		if (array[child] < tmp)
-			array[node] = std::move(array[child]);
-		else
-			break;
-	}
-	array[node] = std::move(tmp);
+void minHeapify(std::vector<Comparable> &array, int node, int n) {
+    // Store the value at the current node in a temporary variable
+    Comparable tmp = std::move(array[node]);
+    // Loop until the current node has at least one child
+    for (; node * 2 + 1 < n; node = child) {
+        // Calculate the index of the left child
+        int child = node * 2 + 1;
+        // If the right child exists and is smaller than the left child, use the right child
+        if (child != n - 1 && array[child + 1] < array[child])
+            ++child;
+        // If the value of the child is smaller than the temporary value,
+        // move the child's value up to the current node
+        if (array[child] < tmp)
+            array[node] = std::move(array[child]);
+        else
+            break;  // Break the loop if the heap property is satisfied
+    }
+    // Place the temporary value in its correct position
+    array[node] = std::move(tmp);
 }
 
 /**
