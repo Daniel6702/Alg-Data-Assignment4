@@ -46,16 +46,23 @@ void BinaryHeap<Comparable>::buildHeap() {
 template<typename Comparable>
 void BinaryHeap<Comparable>::maxHeapify(int node) {
 	int child;
+	// Store the element at the current node temporarily
 	Comparable tmp = std::move(array[node]);
-
+	// Start the loop to maintain the max heap property
 	for (; node * 2 <= currentSize; node = child) {
+		// Determine the left child of the current node
 		child = node * 2;
+		// Check if there is a right child and if it is greater than the left child
 		if (child != currentSize && array[child + 1] > array[child])
 			++child;
+		// Compare the larger child with the temporary element
 		if (array[child] > tmp)
+			// If the child is larger, move it up in the heap
 			array[node] = std::move(array[child]);
 		else
+			// If the temporary element is larger, break out of the loop
 			break;
 	}
+	// Place the temporary element in its correct position
 	array[node] = std::move(tmp);
 }
